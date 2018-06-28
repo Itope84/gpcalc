@@ -12,6 +12,7 @@
         </a>
       </header>
       <div class="card-content">
+        <p id="editSem">Change semester, edit a semester or add new semesters</p>
         <div class="columns is-mobile">
           <div class="field column is-10 is-flex">
             <div class="control has-icons-left">
@@ -35,7 +36,7 @@
             <p class="buttons is-flex">
               
               <a class="button ml-auto bg-secondary">
-                <span class="icon-visibility"></span>
+                <span class="icon-visibility" @click="showgp"></span>
               </a>
               
             </p>
@@ -95,15 +96,17 @@
         </table>
 
         <p class="buttons is-fullwidth">
-          <button class="button" @click="addCourse">Add Course</button>
+          <button class="button ml-auto mr-auto" @click="addCourse">Add Course</button>
 
-          <button class="button ml-auto" @click="addCourse">Save Results</button>
-          <br>
+          <a class="button ml-auto mr-auto" @click="displayAddSem">Change semester</a>
 
-          <button class="button ml-auto bg-secondary" @click="showgp">View CGPA</button>
+          <button class="button ml-auto mr-auto" @click="save">Save Results</button>
 
-          <br>
+          
+        </p>
 
+        <p class="is-flex">
+          <button class="button ml-auto mr-auto bg-secondary" @click="showgp">View CGPA</button>
         </p>
         
 
@@ -155,6 +158,11 @@
                   <span class="tag is-primary">{{semester.gpa('5unit')}}</span>
                 </div>
               </div>
+
+              <div class="control">
+                <button class="button" @click="changeActiveSem(index)">Edit Courses</button>
+              </div>
+
             </div>
           </div>
         </section>
@@ -171,11 +179,11 @@
       <div class="modal-card">
         <header class="modal-card-head">
           <p class="modal-card-title">View CGPA</p>
-          <button class="delete" aria-label="close" @click="closecgpa"></button>
+          <button class="delete" aria-label="close" @click="showcgpa = false"></button>
         </header>
         <section class="modal-card-body">
           <p>Your CGPA iS</p>
-          <h3>{{activeAccount.cgpa()}}</h3>
+          <h3>{{activeAccount.getcgpa()}}</h3>
         </section>
         <footer class="modal-card-foot">
           <button class="button" @click="showcgpa = false">Close</button>
@@ -192,8 +200,8 @@ export default {
   data () {
     return {
       accounts: data.accounts,
-      activeAccount: data.accounts[0],
-      activeSem: data.accounts[0].semesters[0],
+      activeAccount: data.activeAccount,
+      activeSem: data.activeAccount.semesters[0],
       showAddSem: false,
       showcgpa: false
     }
@@ -217,9 +225,23 @@ export default {
     },
     changeActiveSem (index) {
       this.activeSem = this.activeAccount.semesters[index]
+      this.showAddSem = false
     },
     showgp () {
       this.showcgpa = true
+    },
+
+    showNoLocalStorageSupport () {
+      alert('Your browser does not support this feature')
+    },
+
+    save () {
+      if (localStorage) {
+        localStorage.setItem('user-' + this.accounts.indexOf(this.activeAccount), JSON.stringify(this.activeAccount))
+        console.log(JSON.parse(localStorage.getItem('user-' + this.accounts.indexOf(this.activeAccount))))
+      } else {
+        this.showNoLocalStorageSupport()
+      }
     }
   }
 }

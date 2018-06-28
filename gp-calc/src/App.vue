@@ -2,6 +2,14 @@
   <div id="app">
     <div class="top-slanted"></div>
     <div class="body container">
+
+      <div class="stay-top left">
+        <span class="icon-view_headline"></span>
+      </div>
+
+      <div class="stay-top right">
+        <img src="./assets/logo.png" alt="gp-calc logo" class="logo">
+      </div>
       
       <main class="app-holder">
 
@@ -9,8 +17,12 @@
           <h1 class="h3 has-text-weight-bold">CGPA CALCULATOR</h1>
           <p>Easily calculate and save your CGPA to keep track of your academic progress</p>
         </div>
-      
+
         <router-view></router-view>
+
+        <footer>
+          Built by <span class="text-highlighted">Ilesanmi Temitope (Santiago)</span>
+        </footer>
       </main>
 
     </div>
@@ -42,6 +54,33 @@ export default {
       transition: all .5s ease;
   }
 
+  footer{
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 1.5rem 0
+  }
+
+  .stay-top{
+    position: absolute;
+    top: 1rem;
+    color: #fff;
+    font-size: 2rem;
+  }
+
+  .stay-top.left{
+    left: 1rem;
+  }
+
+  .stay-top.right{
+    width: 15%;
+    right: 1rem;
+  }
+
+  .logo{
+    width: 100px;
+    height: auto;
+  }
 
   .top-slanted{
     width: 100vw;

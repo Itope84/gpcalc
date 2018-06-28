@@ -7,14 +7,14 @@ class Account {
     this.cgpa = null
   }
 
-  cgpa () {
+  getcgpa () {
     let tnu = 0
     let tcp = 0
     this.semesters.forEach((semester) => {
       tnu += semester.tnu()
       tcp += semester.tcp(this.classif)
-      return tnu / tcp
     })
+    return tcp / tnu
   }
 }
 
@@ -93,12 +93,29 @@ export class Course {
 
 let courses = [new Course()]
 let semesters = [new Semester(null, courses)]
-let accounts = [new Account(null, semesters)]
+let savedAccount = null
+if (localStorage) {
+  savedAccount = JSON.parse(localStorage.getItem('user-0'))
+  if (savedAccount !== null) {
+    savedAccount.semesters.forEach((semester, index) => {
+      semesters[index] = Object.assign(new Semester(), semester)
+      semesters[index].courses.forEach((course, j) => {
+        courses[j] = Object.assign(new Course(), course)
+      })
+      semesters[index].courses = courses
+    })
+  }
+}
+// converting d semesters and courses
+let activeAccount = savedAccount !== null ? Object.assign(new Account(), savedAccount) : new Account(null, semesters)
+activeAccount.semesters = semesters
+let accounts = [activeAccount]
 
 export default {
   courses: courses,
   semesters: semesters,
   accounts: accounts,
+  activeAccount: activeAccount,
   course () {
     return new Course()
   }
