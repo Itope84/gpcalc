@@ -239,6 +239,7 @@ export default {
       if (localStorage) {
         localStorage.setItem('user-' + this.accounts.indexOf(this.activeAccount), JSON.stringify(this.activeAccount))
         console.log(JSON.parse(localStorage.getItem('user-' + this.accounts.indexOf(this.activeAccount))))
+        alert('Result saved successfully, you can close your browser now')
       } else {
         this.showNoLocalStorageSupport()
       }

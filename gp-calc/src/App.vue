@@ -20,7 +20,7 @@
 
         <router-view></router-view>
 
-        <footer>
+        <footer class="footer">
           Built by <span class="text-highlighted">Ilesanmi Temitope (Santiago)</span>
         </footer>
       </main>
@@ -54,7 +54,7 @@ export default {
       transition: all .5s ease;
   }
 
-  footer{
+  .footer{
     display: block;
     width: 100%;
     text-align: center;
