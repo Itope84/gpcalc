@@ -155,7 +155,7 @@
               <div class="control">
                 <div class="tags has-addons">
                   <span class="tag is-dark">GPA</span>
-                  <span class="tag is-primary">{{semester.gpa('5unit')}}</span>
+                  <span class="tag is-primary">{{semester.gpa('5unit').toFixed(2)}}</span>
                 </div>
               </div>
 
@@ -181,9 +181,9 @@
           <p class="modal-card-title">View CGPA</p>
           <button class="delete" aria-label="close" @click="showcgpa = false"></button>
         </header>
-        <section class="modal-card-body">
+        <section class="modal-card-body has-text-centered">
           <p>Your CGPA iS</p>
-          <h3>{{activeAccount.getcgpa()}}</h3>
+          <h3 class="text-primary-colored">{{activeAccount.getcgpa().toFixed(2)}}</h3>
         </section>
         <footer class="modal-card-foot">
           <button class="button" @click="showcgpa = false">Close</button>

@@ -21,7 +21,7 @@
         <router-view></router-view>
 
         <footer class="footer">
-          Built by <span class="text-highlighted">Ilesanmi Temitope (Santiago)</span>
+          Built by <span class="text-primary-colored">Ilesanmi Temitope (Santiago)</span>
         </footer>
       </main>
 
@@ -58,7 +58,8 @@ export default {
     display: block;
     width: 100%;
     text-align: center;
-    margin: 1.5rem 0
+    margin: 0;
+    padding: 1.5rem 0 .5rem 0
   }
 
   .stay-top{
