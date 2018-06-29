@@ -97,13 +97,15 @@ let savedAccount = null
 if (localStorage) {
   savedAccount = JSON.parse(localStorage.getItem('user-0'))
   if (savedAccount !== null) {
-    savedAccount.semesters.forEach((semester, index) => {
-      semesters[index] = Object.assign(new Semester(), semester)
-      semesters[index].courses.forEach((course, j) => {
-        courses[j] = Object.assign(new Course(), course)
-      })
-      semesters[index].courses = courses
-    })
+    for (var i = 0; i < savedAccount.semesters.length; i++) {
+      semesters[i] = Object.assign(new Semester(), savedAccount.semesters[i])
+      let tempcourses = []
+      for (var j = 0; j < savedAccount.semesters[i].courses.length; j++) {
+        tempcourses[j] = Object.assign(new Course(), savedAccount.semesters[i].courses[j])
+      }
+      semesters[i].courses = tempcourses
+      tempcourses = []
+    }
   }
 }
 // converting d semesters and courses
