@@ -4,7 +4,7 @@
     <div class="body container">
 
       <div class="stay-top left">
-        <span class="icon-view_headline"></span>
+        <a href="https://itope84.github.io/static/gpcalc-0.1.0.apk" target="_blank" class="button is-link is-small mt-4">Download App</a>
       </div>
 
       <div class="stay-top right">
