@@ -1,6 +1,6 @@
 {
   "name": "gpcalc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A CGPA calculator",
   "author": "Ilesanmi T. <topephysics@gmail.com>",
   "private": true,
